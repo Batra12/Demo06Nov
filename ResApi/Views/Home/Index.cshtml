@@ -1,0 +1,55 @@
+﻿<div class="Main_div">
+    <Form class="MainForm">
+       <div class="row">
+            <div class="col-6">
+            <input type="text" class="form-control" id="firstname"/>
+           </div>
+            <div class="col-6">
+            <input type="text" class="form-control" id="lastname"/>
+           </div>
+            <div class="col-6">
+            <input type="text" class="form-control" id="email"/>
+           </div>
+            <div class="col-6">
+            <input type="file" class="form-control" id="imgfile"/>
+           </div>
+       </div>
+       <button type="button" onclick="clickToSave()">Submit</button>
+</Form>
+</div>
+<script src="~/lib//jquery/dist/jquery.min.js"></script>
+<script>
+    function clickToSave(){
+        debugger;
+        var obj = {};
+        var formdata = new FormData();
+        //formdata.append("firstname", $("#firstname").val());
+        //formdata.append("lastname" , $("#lastname").val());
+        //formdata.append("email" ,$("#email").val());
+        formdata.append("file" , $('#imgfile')[0].files[0]);
+        debugger;
+        $.ajax({
+            type:"Post",
+            url:"/Home/SaveFiletoProject",
+             data: formdata,
+            processData: false,
+            contentType: false,
+            //contentType: "application/json",
+            //contentType: "multipart/form-data",
+            //data: JSON.stringify(
+            //{
+            //    "firstname" : $("#firstname").val(),
+            //    "lastname" : $("#lastname").val(),
+            //    "email" : $("#email").val(),
+            //    "file" : $('#imgfile')[0].files[0],
+            //}),
+           // dataType:"json",
+            success: function(res) {
+
+            },
+            error:function(res){
+                debugger;
+            }
+        });
+    }
+</script>
